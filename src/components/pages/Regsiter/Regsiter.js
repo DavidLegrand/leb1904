@@ -2,11 +2,11 @@ import Checkbox from "components/Checkbox";
 import Input from "components/Input";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import React from "react";
+import { Button } from "react-bootstrap";
 
 import * as Yup from 'yup'
 
 const Regsiter = () => {
-
   const initialValues = {
     login: '',
     email: '',
@@ -32,11 +32,9 @@ const Regsiter = () => {
         <Input name="login" type="text" placeholder="Votre login" />
         <Input name="email" type="email" placeholder="Votre email" />
         <Checkbox name="cgu" type="checkbox">Acceptez-vous les CGU ?</Checkbox>
-        <button type="submit">S'inscrire</button>
+        <Button type="submit">S'inscrire</Button>
       </Form >
-
     </Formik >
-
   );
 };
 
