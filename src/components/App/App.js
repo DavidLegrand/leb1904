@@ -1,62 +1,27 @@
+import Header from "components/Header";
 import Router from "components/Router";
-import React, { useState, useEffect } from "react";
+import { SocketProvider } from "contexts/Socket";
+import React from "react";
 import { Row, Col, Container } from "react-bootstrap";
+import { connect } from "react-redux";
 
-
-
-const App = () => {
-
-
+const App = ({ id }) => {
   return (
-    <Container>
-      <Row>
-        <Col>
-          <Router></Router>
-        </Col>
-      </Row>
-    </Container>
+    <>
+      <SocketProvider id={id}>
+        <Header></Header>
+        <Container className='align-items-center text-center justify-content-center d-flex' style={{ height: 'calc(100vh - 56px)' }}>
+          <Row style={{ flex: '1' }} className='h-100'>
+            <Col>
+              <Router></Router>
+            </Col>
+          </Row>
+        </Container>
+      </SocketProvider>
+    </>
   )
-
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import { Row, Col, Container } from "react-bootstrap";
-
-// import Header from "components/Header";
-// import Router from "components/Router";
-
-// const App = () => {
-//   return (
-//     <>
-//       <Header />
-//       <Container>
-//         <Row>
-//           <Col>
-//             <Router />
-//           </Col>
-//         </Row>
-//       </Container>
-//     </>
-//   );
-// };
-
-export default App;
+export default connect(
+  (state) => ({ id: state.user.id })
+)(App);

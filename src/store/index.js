@@ -6,16 +6,23 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 import userReducer from './reducers/user'
+import conversationReducer from './reducers/conversation'
 
-const persistConfig = {
+const userPersistConfig = {
   key: 'user',
+  storage,
+}
+
+const conversationPersistConfig = {
+  key: 'conversation',
   storage,
 }
 
 //const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const rootReducer = combineReducers({
-  user: persistReducer(persistConfig, userReducer)
+  user: persistReducer(userPersistConfig, userReducer),
+  conversation: persistReducer(conversationPersistConfig, conversationReducer),
 })
 
 // Store
