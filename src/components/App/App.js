@@ -16,7 +16,8 @@ const App = () => {
           <Login2></Login2>
         </Col>
       </Row>
-    </Container>)
+    </Container>
+  )
 
 }
 

@@ -5,18 +5,11 @@ import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 
 
-const monMiddleWare = store => next => action => {
-  console.log("Store avant action : ", store.getState());
-  console.log("Action dispatchée : ", action);
-  return next(action)
-}
-
-
 // Store
 const store = createStore(
   rootReducer,
   composeWithDevTools(
-    applyMiddleware(monMiddleWare, logger, thunk)
+    applyMiddleware(logger, thunk)
   )
 )
 export default store
