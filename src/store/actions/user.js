@@ -18,3 +18,28 @@ export const loginUser = (value) => {
     }
   }
 }
+
+// Action creator
+export const registerSuccess = (value = {}) => ({ type: "USER/REGISTER/SUCCESS", payload: value })
+export const registerFailure = (error) => ({ type: "USER/REGISTER/FAILURE", payload: error })
+export const registerStarted = () => ({ type: "USER/REGISTER/STARTED" })
+
+// Thunk
+export const registerUser = (registerFormValues) => {
+  return async (dispatch, getState) => {
+    dispatch(registerStarted())
+    try {
+      // const response = await fetch("https://jsonplaceholder.typicode.com/users/" + value)
+      // if (!response.ok)
+      //   throw new Error("User not found")
+      // const user = await response.json()
+
+      setTimeout(() => {
+        const user = { ...registerFormValues, logged: true }
+        dispatch(registerSuccess(user))
+      }, 500)
+    } catch (error) {
+      dispatch(registerFailure(error.message))
+    }
+  }
+}

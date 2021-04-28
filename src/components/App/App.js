@@ -1,5 +1,4 @@
-import Counter2 from "components/Counter2";
-import Login2 from "components/Login2";
+import Router from "components/Router";
 import React, { useState, useEffect } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 
@@ -12,8 +11,7 @@ const App = () => {
     <Container>
       <Row>
         <Col>
-          <Counter2></Counter2>
-          <Login2></Login2>
+          <Router></Router>
         </Col>
       </Row>
     </Container>
