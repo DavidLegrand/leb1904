@@ -1,9 +1,17 @@
-const initialState = 0
+const initialState = {
+  loading: false,
+  error: null,
+  value: 0
+}
 // Reducer
 const counterReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'INCREMENT':
-      return state + action.payload
+    case 'COUNTER/INCREMENT/SUCCESS':
+      return { ...state, loading: false, error: null, value: action.payload }
+    case 'COUNTER/INCREMENT/FAILURE':
+      return { ...state, loading: false, error: action.payload }
+    case 'COUNTER/INCREMENT/STARTED':
+      return { ...state, loading: true, error: null }
     default:
       return state
   }

@@ -1,16 +1,21 @@
 import React from "react";
 
-import { increment } from 'store/actions/counter'
+import { asyncIncrement } from 'store/actions/counter'
 import { connect } from 'react-redux'
 
-const Counter2 = ({ counter, increment }) => {
-  const handleIncrement = () => increment()
+const Counter2 = ({ counter, asyncIncrement }) => {
   return (
-    <><span>{counter}</span>  <button onClick={handleIncrement}>+1</button></>
+    <>
+      <span>{
+        counter.loading ?
+          "...Chargement" :
+          counter.error ? counter.error : counter.value}</span>
+      <button onClick={() => asyncIncrement()}>Async</button>
+    </>
   )
 }
 
 export default connect(
   state => ({ counter: state.counter }),
-  { increment }
+  { asyncIncrement }
 )(Counter2);

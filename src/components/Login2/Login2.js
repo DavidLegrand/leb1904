@@ -1,16 +1,24 @@
 import { connect } from "react-redux";
 import React from "react";
 
-import { login } from 'store/actions/user'
+import { loginUser } from 'store/actions/user'
 
-const Login2 = ({ user, login }) => {
+const Login2 = ({ user, loginUser }) => {
   return (<>
-    {JSON.stringify(user)}
-    <button onClick={() => login({ login: 'Bob', email: 'bob@yahoo.com' })}>LOGIN</button>
+    {user.loading && <p>Chargement</p>}
+    {user.error && <p>{user.error}</p>}
+    {user.value && (
+      <>
+        <p>{user.value.name}</p>
+        <p>{user.value.username}</p>
+        <p>{user.value.email}</p>
+      </>
+    )}
+    <button onClick={() => loginUser(1)}>LOGIN</button>
   </>);
 };
 
 export default connect(
   state => ({ user: state.user }),
-  { login }
+  { loginUser }
 )(Login2);
